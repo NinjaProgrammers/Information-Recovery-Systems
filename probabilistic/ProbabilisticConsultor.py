@@ -1,5 +1,5 @@
-from ..basics.BasicConsultor import BasicConsultor
-from ..basics.Utils import dot
+from basics.BasicConsultor import BasicConsultor
+from basics.Utils import dot
 
 class ProbabilisticConsultor(BasicConsultor):
 

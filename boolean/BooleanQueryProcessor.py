@@ -1,4 +1,4 @@
-from ..basics.BasicQueryProcessor import BasicQueryProcessor
+from basics.BasicQueryProcessor import BasicQueryProcessor
 
 
 class BooleanQueryProcessor(BasicQueryProcessor):

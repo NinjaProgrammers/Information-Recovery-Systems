@@ -1,5 +1,5 @@
-from ..basics.BasicConsultor import BasicConsultor
-from ..basics.Utils import angle
+from basics.BasicConsultor import BasicConsultor
+from basics.Utils import angle
 
 class VectorialConsultor(BasicConsultor):
 

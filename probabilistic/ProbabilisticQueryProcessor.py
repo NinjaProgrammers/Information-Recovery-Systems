@@ -1,4 +1,4 @@
-from ..basics.BasicQueryProcessor import BasicQueryProcessor
+from basics.BasicQueryProcessor import BasicQueryProcessor
 
 class ProbabilisticQueryProcessor(BasicQueryProcessor):
     def __init__(self, terms):

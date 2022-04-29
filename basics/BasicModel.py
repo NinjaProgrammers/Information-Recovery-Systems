@@ -1,7 +1,7 @@
-from .BasicStorage import BasicStorage
-from .BasicProcessor import BasicProcessor
-from .BasicConsultor import BasicConsultor
-from .BasicQueryProcessor import BasicQueryProcessor
+from basics.BasicStorage import BasicStorage
+from basics.BasicProcessor import BasicProcessor
+from basics.BasicConsultor import BasicConsultor
+from basics.BasicQueryProcessor import BasicQueryProcessor
 
 class BasicModel:
 

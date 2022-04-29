@@ -1,4 +1,4 @@
-from ..basics.BasicProcessor import BasicProcessor
+from basics.BasicProcessor import BasicProcessor
 
 class VectorialProcessor(BasicProcessor):
     def __init__(self, terms):

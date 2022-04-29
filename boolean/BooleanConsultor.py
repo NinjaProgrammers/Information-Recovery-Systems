@@ -1,4 +1,4 @@
-from ..basics.BasicConsultor import BasicConsultor
+from basics.BasicConsultor import BasicConsultor
 
 class BooleanConsultor(BasicConsultor):
     def Consult(self, documents, query):

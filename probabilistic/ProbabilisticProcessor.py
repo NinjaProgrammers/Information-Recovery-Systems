@@ -1,4 +1,4 @@
-from ..basics.BasicProcessor import BasicProcessor
+from basics.BasicProcessor import BasicProcessor
 from math import log2
 
 class ProbabilisticProcessor(BasicProcessor):

@@ -5,3 +5,8 @@ def dot(u, v):
 
 def angle(u, v):
     return dot(u, v) / (sqrt(dot(u, u)) * sqrt(dot(v, v)))
+
+def normalize(arr):
+    mx = max(arr)
+    for i in arr: i /= mx
+    return arr

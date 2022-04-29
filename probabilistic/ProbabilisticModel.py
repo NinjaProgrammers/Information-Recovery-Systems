@@ -1,8 +1,8 @@
-from ..basics.BasicModel import BasicModel
-from ..basics.BasicStorage import BasicStorage
-from .ProbabilisticProcessor import ProbabilisticProcessor
-from ..basics.BasicConsultor import BasicConsultor
-from ..basics.BasicQueryProcessor import BasicQueryProcessor
+from basics.BasicModel import BasicModel
+from basics.BasicStorage import BasicStorage
+from probabilistic.ProbabilisticProcessor import ProbabilisticProcessor
+from basics.BasicConsultor import BasicConsultor
+from basics.BasicQueryProcessor import BasicQueryProcessor
 
 class ProbabilisticModel(BasicModel):
     def __init__(self, storage: BasicStorage, consultor: BasicConsultor, processor: ProbabilisticProcessor,
