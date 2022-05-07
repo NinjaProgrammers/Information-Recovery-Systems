@@ -1,30 +1,30 @@
-from fileProcessing.cran.Document import Document
+from basics.Document import Document
 
 
-def parseDocuments(text):
+def ParseDocuments(text):
     lines = text.split('\n')
 
     documentsList = []
     p = 0
     while p < len(lines):
-        document, p = parseDocument(lines, p)
+        document, p = ParseDocument(lines, p)
         documentsList.append(document)
 
     return documentsList
 
-def parseDocument(lines, p):
-    id, p = parseIndex(lines, p)
-    title, p = parseTitle(lines, p)
-    author, p = parseAuthor(lines, p)
-    bibliography, p = parseBibliography(lines, p)
-    content, p = parseContent(lines, p)
+def ParseDocument(lines, p):
+    id, p = ParseIndex(lines, p)
+    title, p = ParseTitle(lines, p)
+    author, p = ParseAuthor(lines, p)
+    bibliography, p = ParseBibliography(lines, p)
+    content, p = ParseContent(lines, p)
     return Document(id, title, author, bibliography, content), p
 
-def parseIndex(lines, p):
+def ParseIndex(lines, p):
     str, id = lines[p].split()
     return int(id), p + 1
 
-def parseTitle(lines, p):
+def ParseTitle(lines, p):
     p += 1
     title = ""
     while p < len(lines) and lines[p] != '.A':
@@ -32,7 +32,7 @@ def parseTitle(lines, p):
         p += 1
     return title, p
 
-def parseAuthor(lines, p):
+def ParseAuthor(lines, p):
     p += 1
     author = ""
     while p < len(lines) and lines[p] != '.B':
@@ -40,7 +40,7 @@ def parseAuthor(lines, p):
         p += 1
     return author, p
 
-def parseBibliography(lines, p):
+def ParseBibliography(lines, p):
     p += 1
     bibliography = ""
     while p < len(lines) and lines[p] != '.W':
@@ -48,7 +48,7 @@ def parseBibliography(lines, p):
         p += 1
     return bibliography, p
 
-def parseContent(lines, p):
+def ParseContent(lines, p):
     p += 1
     content = ""
     while p < len(lines) and (len(lines[p]) < 2 or lines[p][:2] != '.I'):

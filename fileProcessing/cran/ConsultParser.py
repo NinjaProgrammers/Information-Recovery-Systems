@@ -1,30 +1,31 @@
-from fileProcessing.cran.Consult import Consult
+from basics.Consult import Consult
 
 
-def parseConsults(text):
+def ParseConsults(text):
     lines = text.split("\n")
     consultList = []
 
     p = 0
     while p < len(lines):
-        consult, p = parseConsult(text, p)
+        consult, p = ParseConsult(lines, p)
         consultList.append(consult)
 
     return consultList
 
-def parseConsult(text, p):
-    id, p = parseIndex(text, p)
-    content, p = parseContent(text, p)
+def ParseConsult(lines, p):
+    id, p = ParseIndex(lines, p)
+    content, p = ParseContent(lines, p)
     return Consult(id, content), p
 
-def parseIndex(text, p):
-    str, id = text[p].split()
+def ParseIndex(lines, p):
+    str, id = lines[p].split()
     return int(id), p + 1
 
-def parseContent(text, p):
+def ParseContent(lines, p):
+    p += 1
     content = ""
-    while p < len(text) and (len(text[p]) < 2 or text[p][:2] != ".I"):
-        content += text[p]
+    while p < len(lines) and (len(lines[p]) < 2 or lines[p][:2] != ".I"):
+        content += lines[p] + '\n'
         p += 1
     return content, p
 
