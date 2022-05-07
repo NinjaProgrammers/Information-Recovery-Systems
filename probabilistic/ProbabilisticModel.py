@@ -1,12 +1,14 @@
 from basics.BasicModel import BasicModel
 from basics.BasicStorage import BasicStorage
 from probabilistic.ProbabilisticProcessor import ProbabilisticProcessor
-from basics.BasicConsultor import BasicConsultor
-from basics.BasicQueryProcessor import BasicQueryProcessor
+from probabilistic.ProbabilisticConsultor import ProbabilisticConsultor
+from probabilistic.ProbabilisticQueryProcessor import ProbabilisticQueryProcessor
 
 class ProbabilisticModel(BasicModel):
-    def __init__(self, storage: BasicStorage, consultor: BasicConsultor, processor: ProbabilisticProcessor,
-                 queryProcessor: BasicQueryProcessor):
+    def __init__(self, storage: BasicStorage, terms):
+        consultor = ProbabilisticConsultor()
+        processor = ProbabilisticProcessor(terms)
+        queryProcessor = ProbabilisticQueryProcessor(terms)
         super().__init__(storage, consultor, processor, queryProcessor)
 
     def Consult(self, query):
