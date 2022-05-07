@@ -5,4 +5,4 @@ class BooleanProcessor(BasicProcessor):
         super().__init__(terms)
 
     def ProcessDocument(self, document):
-        return [(1 if i in document else 0) for i in self.terms]
+        return tuple([(1 if i in document else 0) for i in self.terms])
