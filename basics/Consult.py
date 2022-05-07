@@ -4,4 +4,10 @@ class Consult:
         self.id = id
         self.content = content
         self.relevant = []
-        self.representation = None
+        self.tokens = None
+
+    def __repr__(self):
+        return str(self)
+
+    def __str__(self):
+        return self.content

@@ -2,6 +2,7 @@ from basics.BasicStorage import BasicStorage
 from basics.BasicProcessor import BasicProcessor
 from basics.BasicConsultor import BasicConsultor
 from basics.BasicQueryProcessor import BasicQueryProcessor
+from basics.Document import Document
 
 class BasicModel:
 
@@ -12,8 +13,8 @@ class BasicModel:
         self.processor = processor
         self.queryProcessor = queryProcessor
 
-    def AddDocument(self, document):
-        representation = self.processor.ProcessDocument(document)
+    def AddDocument(self, document: Document):
+        representation = self.processor.ProcessDocument(document.tokens)
         self.storage.SaveDocument(document, representation)
 
     def Consult(self, query):
