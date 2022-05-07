@@ -11,4 +11,13 @@ class InMemoryStorage(BasicStorage):
             self.documentsMap[representation] = [document]
 
     def GetAllDocuments(self):
-        return self.documentsMap
+        return self.documentsMap.values()
+
+    def GetDocuments(self, representations):
+        documents = []
+        for r in representations:
+            documents.extend(self.documentsMap[r])
+        return documents
+
+    def GetDocumentRepresentations(self):
+        return list(self.documentsMap.keys())
