@@ -6,3 +6,4 @@ class Document:
         self.author = author
         self.bibliography = bibliography
         self.content = content
+        self.representation = None

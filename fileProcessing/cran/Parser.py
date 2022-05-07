@@ -22,7 +22,7 @@ def parseDocument(lines, p):
 
 def parseIndex(lines, p):
     str, id = lines[p].split()
-    return id, p + 1
+    return int(id), p + 1
 
 def parseTitle(lines, p):
     p += 1
