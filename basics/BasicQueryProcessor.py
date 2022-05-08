@@ -1,7 +1,7 @@
 
 class BasicQueryProcessor:
-    def __init__(self, terms):
-        self.terms = terms
+    def __init__(self, vectorizer):
+        self.vectorizer = vectorizer
 
     def ProcessQuery(self, query):
         raise NotImplementedError()

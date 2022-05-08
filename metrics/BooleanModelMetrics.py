@@ -1,9 +1,9 @@
 from InMemoryStorage import InMemoryStorage
 from boolean.BooleanModel import BooleanModel
 
-def MeasureBooleanModel(documents, consults, features):
+def MeasureBooleanModel(documents, consults, vectorizer):
     booleanStorage = InMemoryStorage()
-    booleanModel = BooleanModel(booleanStorage, features)
+    booleanModel = BooleanModel(booleanStorage, vectorizer)
     for i in documents: booleanModel.AddDocument(i)
 
     precisionMeasures, recallMeasures = [], []
