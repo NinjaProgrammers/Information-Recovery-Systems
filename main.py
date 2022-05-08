@@ -1,25 +1,15 @@
-from InMemoryStorage import InMemoryStorage
-from boolean.BooleanConsultor import BooleanConsultor
-from boolean.BooleanProcessor import BooleanProcessor
-from boolean.BooleanQueryProcessor import BooleanQueryProcessor
-from boolean.BooleanModel import BooleanModel
-from fileProcessing.FileProcessing import readDocument
-from fileProcessing.cran.Parser import parseDocuments
-
+from statistics import mean
+from basics.Vectorizer import Vectorizer
+from metrics.BooleanModelMetrics import MeasureBooleanModel
+from fileProcessing.Loader import LoadCranDataset
 
 if __name__ == "__main__":
+    documents, consults = LoadCranDataset()
 
-    text = readDocument("Test Collections/Cran/cran.all.1400")
-    documents = parseDocuments(text)
+    vectorizer = Vectorizer([str(i) for i in documents])
+    for i in documents: i.tokens = list(vectorizer.Analyze(str(i)))
+    for i in consults: i.tokens = list(vectorizer.Analyze(str(i)))
 
-    terms = []
-    for i in documents:
-        for j in i.content.split():
-            if not j in terms:
-                terms.append(j)
+    precission, recall = MeasureBooleanModel(documents, consults, vectorizer.Features())
+    print(mean(precission), mean(recall))
 
-    storage = InMemoryStorage()
-    consultor = BooleanConsultor()
-    processor = BooleanProcessor(terms)
-    queryProcessor = BooleanQueryProcessor(terms)
-    booleanModel = BooleanModel(storage, consultor, processor, queryProcessor)
