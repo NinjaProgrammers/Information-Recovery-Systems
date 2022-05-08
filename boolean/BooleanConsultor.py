@@ -4,10 +4,10 @@ class BooleanConsultor(BasicConsultor):
     def Consult(self, documents, query, relaxed=None):
         if relaxed is None: return [i for i in documents if i in query]
         relevant = []
-        for i in documents:
-            mx = len(i)
-            for j in query:
-                temp = sum((1 if (x == 0 and y == 1) else 0 for x, y in zip(i, j)))
+        for doc in documents:
+            mx = relaxed + 1
+            for con in query:
+                temp = sum((1 if not i in doc else 0 for i in con))
                 mx = min(mx, temp)
-            if mx <= relaxed: relevant.append(i)
+            if mx <= relaxed: relevant.append(doc)
         return relevant
