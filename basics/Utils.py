@@ -1,10 +1,13 @@
 from math import sqrt
+from numpy import dot as npdot, transpose
 
 def dot(u, v):
-    return sum([i * j for i, j in zip(u, v)])
+    return npdot(u, transpose(v))[0, 0]
 
 def angle(u, v):
-    return dot(u, v) / (sqrt(dot(u, u)) * sqrt(dot(v, v)))
+    num = dot(u, v)
+    if num == 0: return 0
+    return num / (sqrt(dot(u, u)) * sqrt(dot(v, v)))
 
 def normalize(arr):
     mx = max(arr)
