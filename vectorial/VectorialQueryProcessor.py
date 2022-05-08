@@ -1,10 +1,10 @@
 from basics.BasicQueryProcessor import BasicQueryProcessor
-from basics.Utils import normalize
+from basics.Vectorizer import Vectorizer
 
 class VectorialQueryProcessor(BasicQueryProcessor):
-    def __init__(self, terms):
-        super().__init__(terms)
+    def __init__(self, vectorizer: Vectorizer):
+        super().__init__(vectorizer)
 
     def ProcessQuery(self, query):
-        arr = [sum([1 if j == i else 0 for j in query]) for i in self.terms]
-        arr = normalize(arr)
+        query.tokens = self.vectorizer(str(query))
+        return query.tokens

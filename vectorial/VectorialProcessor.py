@@ -1,8 +1,10 @@
 from basics.BasicProcessor import BasicProcessor
+from basics.Vectorizer import Vectorizer
 
 class VectorialProcessor(BasicProcessor):
-    def __init__(self, terms):
-        super().__init__(terms)
+    def __init__(self, vectorizer: Vectorizer):
+        super().__init__(vectorizer)
 
     def ProcessDocument(self, document):
-        return [sum([1 if j == i else 0 for j in document]) for i in self.terms]
+        document.tokens = self.vectorizer(str(document))
+        return document.tokens
