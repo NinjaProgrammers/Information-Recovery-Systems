@@ -30,6 +30,13 @@ class Vectorizer:
             document = [document]
         return self.counter.transform(document)
 
+    def BooleanTransform(self, document):
+        if isinstance(document, str):
+            document = [document]
+        x = self.counter.transform(document)
+        x.data = [1] * len(x.data)
+        return x
+
     def Transform(self, document):
         if isinstance(document, str):
             document = [document]
