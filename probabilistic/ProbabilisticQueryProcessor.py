@@ -1,8 +1,9 @@
 from basics.BasicQueryProcessor import BasicQueryProcessor
 
 class ProbabilisticQueryProcessor(BasicQueryProcessor):
-    def __init__(self, terms):
-        super().__init__(terms)
+    def __init__(self, vectorizer):
+        super().__init__(vectorizer)
 
     def ProcessQuery(self, query):
-        return [(1 if i in query else 0) for i in self.terms]
+        query.tokens = self.vectorizer.CountTransform(str(query))
+        return query.tokens
