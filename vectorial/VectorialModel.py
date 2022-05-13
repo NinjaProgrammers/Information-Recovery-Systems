@@ -1,6 +1,5 @@
 from basics.BasicModel import BasicModel
 from basics.BasicStorage import BasicStorage
-from basics.Document import Document
 from basics.Vectorizer import Vectorizer
 from vectorial.VectorialConsultor import VectorialConsultor
 from vectorial.VectorialProcessor import VectorialProcessor
@@ -12,10 +11,6 @@ class VectorialModel(BasicModel):
         processor = VectorialProcessor(vectorizer)
         queryProcessor = VectorialQueryProcessor(vectorizer)
         super().__init__(storage, vectorizer, consultor, processor, queryProcessor)
-
-    def AddDocument(self, document: Document):
-        document.tokens = str(document)
-        super().AddDocument(document)
 
     def Consult(self, query, size=None):
         processedQuery = self.queryProcessor.ProcessQuery(query)
