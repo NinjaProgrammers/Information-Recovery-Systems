@@ -1,6 +1,8 @@
+from basics.Vectorizer import Vectorizer
+
 class BasicProcessor:
-    def __init__(self, terms):
-        self.terms = terms
+    def __init__(self, vectorizer: Vectorizer):
+        self.vectorizer = vectorizer
 
 
     def ProcessDocument(self, document):
