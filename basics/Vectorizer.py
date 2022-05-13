@@ -3,17 +3,23 @@ from sklearn.feature_extraction.text import CountVectorizer
 from nltk.stem.snowball import EnglishStemmer
 
 class Vectorizer:
-    def __init__(self, corpus):
+    def __init__(self, corpus, binary=False):
         _stemmer = EnglishStemmer()
         _analyzer = CountVectorizer().build_analyzer()
 
         self.analyzer = self.__StemmerAnalyzer__(_stemmer, _analyzer)
 
         if len(corpus) >= 100: self.counter = CountVectorizer(analyzer=self.analyzer, max_df=.85)
-        else: self.counter = CountVectorizer(analyzer=self.analyzer)
+        else: self.counter = CountVectorizer(analyzer=self.analyzer, binary=binary)
         X = self.counter.fit_transform(corpus)
         self.transformer = TfidfTransformer()
         self.transformer.fit(X)
+
+        self.N = len(corpus)
+        self.df = [0 for _ in range(len(self.counter.get_feature_names_out()))]
+        for i in X:
+            for j in i.indices:
+                self.df[j] += 1
 
     def __StemmerAnalyzer__(self, stemmer, analyzer):
         def stemmedWords(doc): return (stemmer.stem(w) for w in analyzer(doc))
@@ -29,13 +35,6 @@ class Vectorizer:
         if isinstance(document, str):
             document = [document]
         return self.counter.transform(document)
-
-    def BooleanTransform(self, document):
-        if isinstance(document, str):
-            document = [document]
-        x = self.counter.transform(document)
-        x.data = [1] * len(x.data)
-        return x
 
     def Transform(self, document):
         if isinstance(document, str):
