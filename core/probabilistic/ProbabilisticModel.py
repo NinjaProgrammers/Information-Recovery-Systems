@@ -16,14 +16,16 @@ class ProbabilisticModel(BasicModel):
         queryProcessor = ProbabilisticQueryProcessor(vectorizer)
         super().__init__(storage, vectorizer, consultor, processor, queryProcessor)
 
-    def Consult(self, query):
+    def Consult(self, query, size = None):
         processedQuery = self.queryProcessor.ProcessQuery(query)
         processedQuery = processedQuery.astype(float32)
         RSV = self.GetRSV()
         for i, index in enumerate(processedQuery.indices):
             processedQuery.data[i] *= RSV[index]
         documents = self.storage.GetAllDocuments()
-        return self.consultor.Consult(documents, processedQuery)
+        relevant = self.consultor.Consult(documents, processedQuery)
+        if size is None or size >= len(relevant): return relevant
+        else: return relevant[: size]
 
     def GetRSV(self):
         ri = [i / self.vectorizer.N for i in self.vectorizer.df]
