@@ -1,4 +1,4 @@
-from core.basics import BasicQueryProcessor
+from core.basics.BasicQueryProcessor import BasicQueryProcessor
 
 
 class BooleanQueryProcessor(BasicQueryProcessor):

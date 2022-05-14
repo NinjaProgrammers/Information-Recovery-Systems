@@ -2,11 +2,11 @@ from math import log2
 
 from numpy import float32
 
-from core import ProbabilisticProcessor
-from core import ProbabilisticQueryProcessor
-from core.basics import BasicModel
-from core.basics import BasicStorage
-from core.probabilistic import ProbabilisticConsultor
+from core.probabilistic.ProbabilisticProcessor import ProbabilisticProcessor
+from core.probabilistic.ProbabilisticQueryProcessor import ProbabilisticQueryProcessor
+from core.basics.BasicModel import BasicModel
+from core.basics.BasicStorage import BasicStorage
+from core.probabilistic.ProbabilisticConsultor import ProbabilisticConsultor
 
 
 class ProbabilisticModel(BasicModel):

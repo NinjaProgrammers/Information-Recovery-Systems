@@ -1,5 +1,5 @@
-from core import InMemoryStorage
-from core.probabilistic import ProbabilisticModel
+from core.InMemoryStorage import InMemoryStorage
+from core.probabilistic.ProbabilisticModel import ProbabilisticModel
 
 
 def MeasureProbabilisticModel(documents, consults, vectorizer):

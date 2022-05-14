@@ -1,5 +1,5 @@
-from core import BooleanModel
-from core import InMemoryStorage
+from core.boolean.BooleanModel import BooleanModel
+from core.InMemoryStorage import InMemoryStorage
 
 
 def MeasureBooleanModel(documents, consults, vectorizer):

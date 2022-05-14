@@ -1,5 +1,5 @@
-from core.basics import BasicConsultor
-from core.basics import dot
+from core.basics.BasicConsultor import BasicConsultor
+from core.basics.Utils import dot
 
 class ProbabilisticConsultor(BasicConsultor):
 

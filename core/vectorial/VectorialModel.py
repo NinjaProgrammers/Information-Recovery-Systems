@@ -1,9 +1,9 @@
-from core import VectorialConsultor
-from core import VectorialProcessor
-from core.basics import BasicModel
-from core.basics import BasicStorage
-from core.basics import Vectorizer
-from core.vectorial import VectorialQueryProcessor
+from core.vectorial.VectorialConsultor import VectorialConsultor
+from core.vectorial.VectorialProcessor import VectorialProcessor
+from core.basics.BasicModel import BasicModel
+from core.basics.BasicStorage import BasicStorage
+from core.basics.Vectorizer import Vectorizer
+from core.vectorial.VectorialQueryProcessor import VectorialQueryProcessor
 
 
 class VectorialModel(BasicModel):

@@ -1,4 +1,4 @@
-from core.basics import BasicProcessor
+from core.basics.BasicProcessor import BasicProcessor
 
 
 class ProbabilisticProcessor(BasicProcessor):

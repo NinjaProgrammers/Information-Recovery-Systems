@@ -1,4 +1,5 @@
-from core.basics import BasicProcessor
+from core.basics.BasicProcessor import BasicProcessor
+
 
 class BooleanProcessor(BasicProcessor):
     def __init__(self, vectorizer):

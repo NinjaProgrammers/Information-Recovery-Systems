@@ -1,4 +1,4 @@
-from core.basics import Document
+from core.basics.Document import Document
 
 
 def ParseDocuments(text):

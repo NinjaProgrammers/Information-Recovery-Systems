@@ -1,4 +1,4 @@
-from core import InMemoryStorage
+from core.InMemoryStorage import InMemoryStorage
 from core.vectorial.VectorialModel import VectorialModel
 
 def MeasureVectorialModel(documents, consults, vectorizer):

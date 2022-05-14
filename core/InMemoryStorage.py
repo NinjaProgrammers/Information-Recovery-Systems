@@ -1,4 +1,5 @@
-from core.basics import BasicStorage
+from core.basics.BasicStorage import BasicStorage
+
 
 class InMemoryStorage(BasicStorage):
     def __init__(self):

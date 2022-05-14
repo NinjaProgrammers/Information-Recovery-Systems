@@ -10,7 +10,11 @@
 <ul>
     {% for doc in docs %}
         <li>
-            {{ doc.title }}, {{ doc.author }}
+            <p><b>Document ID:</b> {{doc.id}}</p>
+            <p><b>Title:</b> {{doc.title}}</p>
+            <p><b>Author:</b> {{doc.author}}</p>
+            <p><b>Content:</b> {{doc.content}}</p>
+            <br><br>
         </li>
     {% endfor %}
 </ul>

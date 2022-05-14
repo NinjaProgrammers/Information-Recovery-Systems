@@ -1,10 +1,10 @@
-from core import BooleanProcessor
-from core import BooleanQueryProcessor
-from core.basics import BasicModel
-from core.basics import BasicStorage
-from core.basics import Document
-from core.basics import Vectorizer
+from core.boolean.BooleanProcessor import BooleanProcessor
+from core.boolean.BooleanQueryProcessor import BooleanQueryProcessor
 from core.boolean.BooleanConsultor import BooleanConsultor
+from core.basics.Document import Document
+from core.basics.BasicModel import BasicModel
+from core.basics.BasicStorage import BasicStorage
+from core.basics.Vectorizer import Vectorizer
 
 
 class BooleanModel(BasicModel):

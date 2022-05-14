@@ -1,9 +1,9 @@
-from core.basics import BasicConsultor
-from core.basics import BasicProcessor
-from core.basics import BasicQueryProcessor
-from core.basics import BasicStorage
-from core.basics import Document
-from core.basics import Vectorizer
+from core.basics.BasicConsultor import BasicConsultor
+from core.basics.BasicQueryProcessor import BasicQueryProcessor
+from core.basics.BasicStorage import BasicStorage
+from core.basics.Vectorizer import Vectorizer
+from core.basics.BasicProcessor import BasicProcessor
+from core.basics.Document import Document
 
 
 class BasicModel:

@@ -1,9 +1,9 @@
 from core.fileProcessing.FileProcessing import ReadDocument
-from core.fileProcessing.cran import ParseDocuments
+from core.fileProcessing.cran.Parser import ParseDocuments
 from core.fileProcessing.cran.ConsultParser import ParseConsults
 from core.fileProcessing.cran.RelevancyParser import ParseRelevancyList
 
-path = "Test Collections/Cran/"
+path = "./Test Collections/Cran/"
 documentsPath = path + "cran.all.1400"
 consultsPath = path + "cran.qry"
 relevancyPath = path + "cranqrel"

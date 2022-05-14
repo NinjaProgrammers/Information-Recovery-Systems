@@ -1,4 +1,5 @@
-from core.basics import BasicQueryProcessor
+from core.basics.BasicQueryProcessor import BasicQueryProcessor
+
 
 class ProbabilisticQueryProcessor(BasicQueryProcessor):
     def __init__(self, vectorizer):

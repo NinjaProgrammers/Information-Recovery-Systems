@@ -1,8 +1,10 @@
 from statistics import mean
 
-from core import LoadCranDataset
-from core.basics import Vectorizer
-from core.metrics import MeasureProbabilisticModel
+from core.fileProcessing.Loader import LoadCranDataset
+from core.basics.Vectorizer import Vectorizer
+from core.metrics.BooleanModelMetrics import MeasureBooleanModel
+from core.metrics.VectorialModelMetrics import MeasureVectorialModel
+from core.metrics.ProbabilisticModelMetrics import MeasureProbabilisticModel
 
 if __name__ == "__main__":
     documents, consults = LoadCranDataset()

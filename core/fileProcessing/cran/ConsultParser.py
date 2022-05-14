@@ -1,4 +1,4 @@
-from core.basics import Consult
+from core.basics.Consult import Consult
 
 
 def ParseConsults(text):

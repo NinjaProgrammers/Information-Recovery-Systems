@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
-from core import InitializeBooleanModel
+from core.InitializeBooleanModel import InitializeBooleanModel
 from core.basics import Consult
 
 
@@ -20,7 +20,7 @@ def SearchResultsView(request):
 
     if model == "Boolean":
         boolean = InitializeBooleanModel()
-        docs = boolean.Consult(query)
+        docs = boolean.Consult(query, relaxed=3)
         data = {
             "docs": docs
         }

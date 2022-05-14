@@ -1,5 +1,6 @@
-from core.basics import BasicQueryProcessor
-from core.basics import Vectorizer
+from core.basics.BasicQueryProcessor import BasicQueryProcessor
+from core.basics.Vectorizer import Vectorizer
+
 
 class VectorialQueryProcessor(BasicQueryProcessor):
     def __init__(self, vectorizer: Vectorizer):

@@ -1,4 +1,5 @@
-from core.basics import Vectorizer
+from core.basics.Vectorizer import Vectorizer
+
 
 class BasicProcessor:
     def __init__(self, vectorizer: Vectorizer):
