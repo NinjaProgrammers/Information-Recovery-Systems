@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<h1>Home Page</h1>
+<form action="{% url 'search_results' %}" method="get">
+
+    <input type="radio" id="boolean" name="model" value="Boolean" checked>
+    <label for="boolean">Boolean</label><br>
+    <input type="radio" id="vectorial" name="model" value="Vectorial">
+    <label for="vectorial">Vectorial</label><br>
+    <input type="radio" id="probabilistic" name="model" value="Probabilistic">
+    <label for="probabilistic">Probabilistic</label>
+
+    <br>
+
+    <input name="q" type="text" placeholder="Search...">
+    <button type="submit">Search</button>
+</form>
+</body>
+</html>
