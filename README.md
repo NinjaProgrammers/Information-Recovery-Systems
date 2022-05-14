@@ -109,6 +109,12 @@ csr_matrix (matrix esparcida) del módulo scipy, para de esta forma ganar en cua
 complejidad espacial y temporal de los algoritmos.
 
   
+##Ejecución
 
+Para ejecutar el proyecto debe ejecutar el siguiente comando en la carpeta app:
+
+```bash
+python manage.py runserver
+```
 
  
