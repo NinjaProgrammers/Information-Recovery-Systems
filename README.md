@@ -148,4 +148,5 @@ Para correr el proyecto debe ejecutar el siguiente comando en la carpeta app:
 python manage.py runserver
 ```
 
+Se incluye además un archivo requirements.txt con el conjunto de dependencias de la aplicación.
  
