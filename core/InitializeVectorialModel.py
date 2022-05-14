@@ -1,11 +1,11 @@
 from core.InMemoryStorage import InMemoryStorage
 from core.basics.Vectorizer import Vectorizer
-from core.fileProcessing.Loader import LoadCranDocuments
+from core.fileProcessing.Loader import LoadCranDataset
 from core.vectorial.VectorialModel import VectorialModel
 
 
 def InitializeVectorialModel():
-    documents = LoadCranDocuments()
+    documents, _ = LoadCranDataset()
     vectorizer = Vectorizer([str(i) for i in documents])
     storage = InMemoryStorage()
     vectorial = VectorialModel(storage, vectorizer)
