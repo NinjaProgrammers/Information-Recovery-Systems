@@ -11,7 +11,7 @@ Marcos Adrián Valdivié Rodríguez C512
 
 ---
 
-## Módulo **_basics_** y Jerarquía de clases
+### Módulo **_basics_** y Jerarquía de clases
 
 El módulo **_basics_** consta de las definiciones de clases usadas comunmente por todos los modelos
 utilizados en la aplicación.
@@ -53,32 +53,51 @@ los modelos implementados. Utiliza el objeto EnglishStemmer de nltk para realiza
  documentos y las consultas y los objetos CountVectorizer y TfidfTransformer de sklearn para obtener
  los vectores representativos.
  
-## Módulo **_fileProcessing_**  
+### Módulo **_fileProcessing_**  
 
 Este módulo contiene los métodos necesarios para abrir, leer y parsear los sets de datos
 suministrados. Actualmente solo se encuentra implementado el parser para el set de datos
 __cran__.
 
-## Módulo **_metrics_**
+### Módulo **_metrics_**
 
 Este módulo contiene tres ficheros, encargados de, dado un conjunto de documentos y consultas
 analizar y medir la efectividad de los modelos implementados utilizando las medidas de 
 _Presición_, _Recobrado_ y la medida de _Medium Average Presicion_ para los modelos que
 poseen función de ranking.
 
-## Módulos **_boolean_**, **_vectorial_** y **_probabilistic_**
+### Módulos **_boolean_**, **_vectorial_** y **_probabilistic_**
 
 Estos módulos contienen las implementaciones específicas de las clases básicas
 del módulo __basics__ para cada uno de los modelos estudiados. 
 
-## Archivo **_InMemoryStorage_**
+### Archivo **_InMemoryStorage_**
 
 Este archivo contiene una implementación de la clase __BasicStorage__ que maneja el conjunto
 de documentos como objetos existentes en la memoria del programa.
 
 ---
 
-## Algunos detalles de implementación
+### Archivos *__InitializeModel__*
+
+Los archivos InitializeBooleanModel, InitializeVectorialModel e InitializeProbabilisticModel tienen
+como objetivo la inicialización de los modelos correspondientes para facilitar su uso por la aplicación visual.
+ 
+---
+
+### Archivo *__Main__*
+
+El fichero `main.py` contenido por la carpeta core tiene como propósito probar el conjunto de 
+datos cran por cada uno de los modelos implementados y mostrar los resultados de las métricas de 
+evaluación calculadas. Su ejecución puede demorar varios minutos. Dentro del fichero se encuentran
+los resultados de pruebas ejecutadas. Para correr las pruebas basta con ejecutar el siguiente comando
+en la carpeta core:
+
+```bash
+python main.py
+```  
+
+## Detalles de implementación
 
 La función de consulta para el modelo booleano resultó extremadamente ineficiente para
 el conjunto de consultas y documentos proporcionados en el dataset __cran__, ya que al
@@ -104,14 +123,26 @@ la clase TfidfTransformer del mismo módulo para, dado un conjunto de documentos
 y la representación de la cantidad de veces que aparece cada término en un documento dado,
 retornar el vector tf-idf de dicho documento. 
 
-Para los modelos binarios y probabilístico se utilizó en todo momento objetos de la clase
+Para los modelos booleano y probabilístico se utilizó en todo momento objetos de la clase
 csr_matrix (matrix esparcida) del módulo scipy, para de esta forma ganar en cuanto a 
 complejidad espacial y temporal de los algoritmos.
 
-  
-##Ejecución
+## Aplicación visual
 
-Para ejecutar el proyecto debe ejecutar el siguiente comando en la carpeta app:
+Al ejecutar la aplicación y abrir el navegador de su preferencia en la url http://127.0.0.1:8000/
+encontrará la página principal de la aplicación, la cual consta de tres checkboxes
+para elegir el modelo con el que se desea hacer la consulta, un área de texto para 
+insertar la consulta y un botón para enviar el formulario con la consulta y el modelo
+para que esta sea analizada. Al hacer click sobre dicho botón será dirigido a la 
+página de resultados donde verá los documentos relevantes para la consulta insertada.
+Para los modelos vectorial y booleano se decidió mostrar solamente los primeros 20 
+documentos del ordenamiento por relevancia que se obtiene para cada consulta. Recuerde
+que al probar el modelo booleano es necesario tener una correspondencia completa entre
+los términos de su consulta y los de los documentos para que estos sean relevantes.
+  
+### Ejecución
+
+Para correr el proyecto debe ejecutar el siguiente comando en la carpeta app:
 
 ```bash
 python manage.py runserver
