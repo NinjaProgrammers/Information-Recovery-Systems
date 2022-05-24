@@ -30,7 +30,7 @@ def SearchResultsView(request):
         docs = vectorial.Consult(query, 20)
         data = {"docs": docs}
     else:
-        docs = probabilistic.Consult(query, size=20)
+        docs = probabilistic.Consult(query, size=20, retroalimentation=True)
         data = {"docs": docs}
 
     return render(request, template_name, data)
