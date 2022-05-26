@@ -24,13 +24,13 @@ def SearchResultsView(request):
     query = Consult(id=1, content=q)
 
     if model == "Boolean":
-        docs = boolean.Consult(query)
+        docs = boolean.Consult(query, size=20, relaxed=0.4)
         data = {"docs": docs}
     elif model == "Vectorial":
-        docs = vectorial.Consult(query, 20)
+        docs = vectorial.Consult(query, size=20)
         data = {"docs": docs}
     else:
-        docs = probabilistic.Consult(query, size=20, retroalimentation=True)
+        docs = probabilistic.Consult(query, size=20, retroalimentation=10)
         data = {"docs": docs}
 
     return render(request, template_name, data)
