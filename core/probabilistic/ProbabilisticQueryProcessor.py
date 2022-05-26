@@ -8,4 +8,4 @@ class ProbabilisticQueryProcessor(BasicQueryProcessor):
 
     def ProcessQuery(self, query):
         query.tokens = self.vectorizer.CountTransform(str(query))
-        return query.tokens.astype(float32)
+        return query.tokens

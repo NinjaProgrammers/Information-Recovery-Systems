@@ -1,19 +1,12 @@
 from core.basics.BasicStorage import BasicStorage
+from numpy import array_equal
 
 
 class InMemoryStorage(BasicStorage):
     def __init__(self):
-        self.documentsMap = {}
-        self.representations = []
         self.documents = []
 
     def SaveDocument(self, document, representation):
-        hashable = str(representation)
-        try:
-            self.documentsMap[hashable].append(len(self.documents))
-        except:
-            self.documentsMap[hashable] = [len(self.documents)]
-            self.representations.append(representation)
         self.documents.append(document)
 
     def GetAllDocuments(self):
@@ -21,9 +14,10 @@ class InMemoryStorage(BasicStorage):
 
     def GetDocuments(self, representations):
         documents = []
-        for r in representations:
-            documents.extend((self.documents[i] for i in self.documentsMap[str(r)]))
+        for doc in documents:
+            if any(r for r in representations if array_equal(doc.tokens, r)):
+                documents.append(doc)
         return documents
 
     def GetDocumentRepresentations(self):
-        return self.representations
+        return (d.tokens for d in self.documents)
