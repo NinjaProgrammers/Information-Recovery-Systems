@@ -1,7 +1,8 @@
+import numpy as np
 from nltk.stem.snowball import EnglishStemmer
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
-
+from numpy import float32
 
 class Vectorizer:
     def __init__(self, corpus, binary=False):
@@ -10,17 +11,17 @@ class Vectorizer:
 
         self.analyzer = self.__StemmerAnalyzer__(_stemmer, _analyzer)
 
-        if len(corpus) >= 100: self.counter = CountVectorizer(analyzer=self.analyzer, max_df=.85)
+        if len(corpus) >= 100: self.counter = CountVectorizer(analyzer=self.analyzer, max_df=.85, binary=binary)
         else: self.counter = CountVectorizer(analyzer=self.analyzer, binary=binary)
         X = self.counter.fit_transform(corpus)
         self.transformer = TfidfTransformer()
         self.transformer.fit(X)
 
         self.N = len(corpus)
-        self.df = [0 for _ in range(len(self.counter.get_feature_names_out()))]
-        for i in X:
-            for j in i.indices:
-                self.df[j] += 1
+        self.vocabulary = len(self.counter.get_feature_names_out())
+
+        X = np.where(X.toarray() > 0, 1, 0)
+        self.df = np.sum(X, axis=0)
 
     def __StemmerAnalyzer__(self, stemmer, analyzer):
         def stemmedWords(doc): return (stemmer.stem(w) for w in analyzer(doc))
@@ -35,13 +36,14 @@ class Vectorizer:
     def CountTransform(self, document):
         if isinstance(document, str):
             document = [document]
-        return self.counter.transform(document)
+        return np.array(self.counter.transform(document).indices)
 
     def Transform(self, document):
         if isinstance(document, str):
             document = [document]
-        a = self.counter.transform(document)
-        return self.transformer.transform(a)
+        array = self.counter.transform(document)
+        array = self.transformer.transform(array).toarray()
+        return array.reshape(array.size).astype(float32)
 
     def Features(self):
         return self.counter.get_feature_names_out()

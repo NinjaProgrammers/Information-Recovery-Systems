@@ -20,5 +20,5 @@ class BooleanModel(BasicModel):
     def Consult(self, query, relaxed=None):
         processedQuery = self.queryProcessor.ProcessQuery(query)
         documents = self.storage.GetDocumentRepresentations()
-        remarkable = self.consultor.Consult(documents, [processedQuery], relaxed)
+        remarkable = self.consultor.Consult(documents, processedQuery, relaxed)
         return self.storage.GetDocuments(remarkable)

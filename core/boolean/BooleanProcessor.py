@@ -7,4 +7,4 @@ class BooleanProcessor(BasicProcessor):
 
     def ProcessDocument(self, document):
         document.tokens = self.vectorizer.CountTransform(str(document))
-        return document.tokens.indices
+        return document.tokens

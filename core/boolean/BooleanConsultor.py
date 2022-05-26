@@ -1,21 +1,16 @@
+import numpy as np
 from core.basics.BasicConsultor import BasicConsultor
-from numpy import array_equal
 
 
 class BooleanConsultor(BasicConsultor):
     def Consult(self, documents, query, relaxed=None):
         relevant = []
         if relaxed is None:
-            for doc in documents:
-                add = False
-                for q in query:
-                    add |= array_equal(doc, q)
-                if add: relevant.append(doc)
+            relevant = [doc for doc in documents if np.array_equal(doc, query)]
         else:
             for doc in documents:
-                mx = relaxed + 1
-                for con in query:
-                    temp = sum((1 if not i in doc else 0 for i in con))
-                    mx = min(mx, temp)
-                if mx <= relaxed: relevant.append(doc)
+                a = len(np.intersect1d(doc, query))
+                b = len(np.setdiff1d(doc, query))
+                c = len(np.setdiff1d(query, doc))
+                if a / (a + 2 * c) >= relaxed: relevant.append(doc)
         return relevant
