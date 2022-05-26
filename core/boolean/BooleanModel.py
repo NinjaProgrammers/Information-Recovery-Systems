@@ -17,7 +17,9 @@ class BooleanModel(BasicModel):
     def AddDocument(self, document: Document):
         super().AddDocument(document)
 
-    def Consult(self, query, relaxed=None):
+    def Consult(self, query, size=None, relaxed=None):
         processedQuery = self.queryProcessor.ProcessQuery(query)
         documents = self.storage.GetAllDocuments()
-        return self.consultor.Consult(documents, processedQuery, relaxed)
+        relevant = self.consultor.Consult(documents, processedQuery, relaxed)
+        if size is None or size >= len(relevant): return relevant
+        else: return relevant[: size]
