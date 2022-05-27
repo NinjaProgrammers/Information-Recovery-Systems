@@ -1,15 +1,18 @@
 from core.InMemoryStorage import InMemoryStorage
 from core.vectorial.VectorialModel import VectorialModel
+from time import time
 
 def MeasureVectorialModel(documents, consults, vectorizer):
     storage = InMemoryStorage()
     model = VectorialModel(storage, vectorizer)
     for i in documents: model.AddDocument(i)
 
-    precisionMeasures, recallMeasures, mapMeasures = [], [], []
+    precisionMeasures, recallMeasures, mapMeasures, timeMeasures = [], [], [], []
     for q in consults:
         relevant = [i[1] for i in q.relevant if i[2]]
+        begTime = time()
         ranking = model.Consult(q)
+        timeMeasures.append(time() - begTime)
         sz = len(relevant)
 
         founded, s = 0, 0
@@ -22,5 +25,5 @@ def MeasureVectorialModel(documents, consults, vectorizer):
         rr = sum([1 if i.id in relevant else 0 for i in ranking[:sz]])
         precisionMeasures.append((rr + 1) / (sz + 1))
         recallMeasures.append((rr + 1) / (len(relevant) + 1))
-    return precisionMeasures, recallMeasures, mapMeasures
+    return precisionMeasures, recallMeasures, mapMeasures, timeMeasures
     # 0.4660001019570855 0.4660001019570855 0.351396020904683
