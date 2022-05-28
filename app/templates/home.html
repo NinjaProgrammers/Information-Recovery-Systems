@@ -5,23 +5,33 @@
     <title>Home</title>
 </head>
 <body>
-<form action="{% url 'search_results' %}" method="get">
     <div style="margin: 50px">
         <h1>Home Page</h1>
-        <input type="radio" id="boolean" name="model" value="Boolean" checked>
-        <label for="boolean">Boolean</label><br>
-        <input type="radio" id="vectorial" name="model" value="Vectorial">
-        <label for="vectorial">Vectorial</label><br>
-        <input type="radio" id="probabilistic" name="model" value="Probabilistic">
-        <label for="probabilistic">Probabilistic</label>
+        <form action="{% url 'search_results' %}" method="get">
+            <div style="display: flex; justify-content: start;">
+                <div style="margin-right: 20px">
+                    <input type="radio" id="boolean" name="model" value="Boolean" checked>
+                    <label for="boolean">Boolean</label>
+                </div>
+                <div style="margin-right: 20px">
+                    <input type="radio" id="vectorial" name="model" value="Vectorial">
+                    <label for="vectorial">Vectorial</label>
+                </div>
+                <div style="margin-right: 20px">
+                    <input type="radio" id="probabilistic" name="model" value="Probabilistic">
+                    <label for="probabilistic">Probabilistic</label>
+                </div>
+            </div>
 
-        <br><br>
+            <br><br>
 
-        <textarea style="width: 100%; height: 200px;" name="q" type="text" placeholder="Search..."></textarea>
-        <br>
-        <button style="float:right" type="submit">Search</button>
+            <textarea style="width: 100%; height: 200px;" name="q" type="text" placeholder="Search..."></textarea>
+            <br>
+            <button style="float:right" type="submit">Search</button>
+        </form>
+
+        {% block content %} {% endblock %}
     </div>
 
-</form>
 </body>
 </html>

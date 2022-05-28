@@ -1,25 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Results</title>
-</head>
-<body>
-<h1>Search Results</h1>
+{% extends 'home.html' %}
 
-<ul>
-    {% for doc in docs %}
-        <li>
-            <p><b>Document ID:</b> {{doc.id}}</p>
-            <p><b>Title:</b> {{doc.title}}</p>
-            <p><b>Author:</b> {{doc.author}}</p>
-            <p><b>Content:</b> {{doc.content}}</p>
-            <p><b>Bibliography:</b> {{doc.bibliography}}</p>
-            <br><br>
-        </li>
-    {% endfor %}
-</ul>
-<br>
-<button type="button"><a href="{% url 'home' %}">Back</a></button>
-</body>
-</html>
+{% block content %}
+    <h1>Search Results</h1>
+
+    <ul>
+        {% for doc in docs %}
+            <li>
+                <p><b>Document ID:</b> {{doc.id}}</p>
+                <p><b>Title:</b> {{doc.title}}</p>
+                <p><b>Author:</b> {{doc.author}}</p>
+                <p><b>Content:</b> {{doc.content}}</p>
+                <p><b>Bibliography:</b> {{doc.bibliography}}</p>
+                <br><br>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

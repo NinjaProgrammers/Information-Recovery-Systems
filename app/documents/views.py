@@ -23,7 +23,9 @@ def SearchResultsView(request):
 
     query = Consult(id=1, content=q)
 
-    if model == "Boolean":
+    if query is None or model is None:
+        data = {"docs": []}
+    elif model == "Boolean":
         docs = boolean.Consult(query, size=20, relaxed=0.4)
         data = {"docs": docs}
     elif model == "Vectorial":
