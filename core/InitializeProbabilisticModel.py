@@ -6,6 +6,7 @@ from core.probabilistic.ProbabilisticModel import ProbabilisticModel
 
 def InitializeProbabilisticModel():
     documents, _ = LoadCranDataset("./Test Collections/Cran/")
+    # documents = LoadIMDBDataset("./Test Collections/imdb/")
     vectorizer = Vectorizer([str(i) for i in documents], True)
     storage = InMemoryStorage()
     probabilistic = ProbabilisticModel(storage, vectorizer)

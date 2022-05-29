@@ -2,6 +2,7 @@ from core.fileProcessing.FileProcessing import ReadDocument
 from core.fileProcessing.cran.Parser import ParseDocuments
 from core.fileProcessing.cran.ConsultParser import ParseConsults
 from core.fileProcessing.cran.RelevancyParser import ParseRelevancyList
+from core.fileProcessing.imdb.IMDBParser import ParseIMDB
 
 def LoadCranDocuments(documentsPath):
     return ReadDocument(documentsPath)
@@ -31,3 +32,9 @@ def LoadCranDataset(basePath):
         consults[id].relevant = arr
 
     return documents, consults
+
+def LoadIMDBDataset(path):
+    path = path + "imdb.txt"
+    text = ReadDocument(path)
+    documents = ParseIMDB(text)
+    return documents

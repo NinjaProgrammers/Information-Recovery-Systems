@@ -7,10 +7,10 @@
         {% for doc in docs %}
             <li>
                 <p><b>Document ID:</b> {{doc.id}}</p>
-                <p><b>Title:</b> {{doc.title}}</p>
-                <p><b>Author:</b> {{doc.author}}</p>
+                {% if doc.title != None %}<p><b>Title:</b> {{doc.title}}</p>{% endif %}
+                {% if doc.author != None %}<p><b>Author:</b> {{doc.author}}</p>{% endif %}
                 <p><b>Content:</b> {{doc.content}}</p>
-                <p><b>Bibliography:</b> {{doc.bibliography}}</p>
+                {% if doc.bibliography != None %}<p><b>Bibliography:</b> {{doc.bibliography}}</p>{% endif %}
                 <br><br>
             </li>
         {% endfor %}
