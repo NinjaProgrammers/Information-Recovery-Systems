@@ -12,5 +12,5 @@ class BooleanConsultor(BasicConsultor):
                 a = len(np.intersect1d(doc.tokens, query))
                 b = len(np.setdiff1d(doc.tokens, query))
                 c = len(np.setdiff1d(query, doc.tokens))
-                if a / (a + 2 * c) >= relaxed: relevant.append(doc)
+                if (a + 2 * c) != 0 and a / (a + 2 * c) >= relaxed: relevant.append(doc)
         return relevant
