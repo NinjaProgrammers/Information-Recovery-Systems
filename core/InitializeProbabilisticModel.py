@@ -9,5 +9,4 @@ def InitializeProbabilisticModel():
     # documents = LoadIMDBDataset("./Test Collections/imdb/")
     # documents = LoadNewsgroupDataset("./Test Collections/Newsgroups/")
     probabilistic = ProbabilisticModel(documents)
-    for d in documents: probabilistic.AddDocument(d)
     return probabilistic

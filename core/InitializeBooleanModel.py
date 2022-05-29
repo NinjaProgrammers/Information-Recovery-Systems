@@ -9,5 +9,4 @@ def InitializeBooleanModel():
     # documents = LoadIMDBDataset("./Test Collections/imdb/")
     # documents = LoadNewsgroupDataset("./Test Collections/Newsgroups/")
     boolean = BooleanModel(documents)
-    for d in documents: boolean.AddDocument(d)
     return boolean

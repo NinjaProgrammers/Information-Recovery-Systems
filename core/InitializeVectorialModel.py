@@ -9,6 +9,4 @@ def InitializeVectorialModel():
     # documents = LoadIMDBDataset("./Test Collections/imdb/")
     # documents = LoadNewsgroupDataset("./Test Collections/Newsgroups/")
     vectorial = VectorialModel(documents)
-    for d in documents:
-        vectorial.AddDocument(d)
     return vectorial
