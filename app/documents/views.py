@@ -22,17 +22,20 @@ def SearchResultsView(request):
     print("Query = ", q, " Model = ", model)
 
     query = Consult(id=1, content=q)
+    data = {}
 
     if query is None or model is None:
-        data = {"docs": []}
+        docs = []
     elif model == "Boolean":
         docs = boolean.Consult(query, size=20, relaxed=0.4)
-        data = {"docs": docs}
     elif model == "Vectorial":
         docs = vectorial.Consult(query, size=20)
-        data = {"docs": docs}
     else:
         docs = probabilistic.Consult(query, size=20, retroalimentation=10)
-        data = {"docs": docs}
+
+    if model == None: model = "Boolean"
+    data["docs"] = docs
+    data["model"] = model
+    data["q"] = q
 
     return render(request, template_name, data)
