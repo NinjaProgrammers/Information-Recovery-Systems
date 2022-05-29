@@ -1,4 +1,4 @@
-from core.basics.Document import Document
+from core.basics.Document import CranDocument
 
 
 def ParseDocuments(text):
@@ -18,7 +18,7 @@ def ParseDocument(lines, p):
     author, p = ParseAuthor(lines, p)
     bibliography, p = ParseBibliography(lines, p)
     content, p = ParseContent(lines, p)
-    return Document(id, title, author, bibliography, content), p
+    return CranDocument(id, title, author, bibliography, content), p
 
 def ParseIndex(lines, p):
     str, id = lines[p].split()

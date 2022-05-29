@@ -1,5 +1,5 @@
-from core.basics.MovieReview import MovieReview
+from core.basics.Document import Document
 
 
 def ParseIMDB(text: str):
-    return [MovieReview(id + 1, content) for id, content in enumerate(text.split('\n'))]
+    return [Document(id + 1, content) for id, content in enumerate(text.split('\n'))]

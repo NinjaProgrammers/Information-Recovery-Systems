@@ -11,8 +11,8 @@ class Vectorizer:
 
         self.analyzer = self.__StemmerAnalyzer__(_stemmer, _analyzer)
 
-        if len(corpus) >= 100: self.counter = CountVectorizer(analyzer=self.analyzer, max_df=.85, binary=binary)
-        else: self.counter = CountVectorizer(analyzer=self.analyzer, binary=binary)
+        if len(corpus) >= 100: self.counter = CountVectorizer(analyzer=self.analyzer, max_df=.85, binary=binary, max_features=5000)
+        else: self.counter = CountVectorizer(analyzer=self.analyzer, binary=binary, max_features=5000)
         X = self.counter.fit_transform(corpus)
         self.transformer = TfidfTransformer()
         self.transformer.fit(X)

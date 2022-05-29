@@ -1,12 +1,23 @@
 
 class Document:
-    def __init__(self, id, title, author, bibliography, content):
+    def __init__(self, id, content):
         self.id = id
+        self.content = content
+        self.tokens = None
+
+    def __str__(self):
+        return self.content
+
+    def __repr__(self):
+        return self.__str__()
+
+
+class CranDocument(Document):
+    def __init__(self, id, title, author, bibliography, content):
+        super().__init__(id, content)
         self.title = title
         self.author = author
         self.bibliography = bibliography
-        self.content = content
-        self.tokens = None
 
     def __repr__(self):
         return str(self)
