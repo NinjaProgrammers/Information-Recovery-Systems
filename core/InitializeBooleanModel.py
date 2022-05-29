@@ -8,9 +8,6 @@ def InitializeBooleanModel():
     documents, _ = LoadCranDataset("./Test Collections/Cran/")
     # documents = LoadIMDBDataset("./Test Collections/imdb/")
     # documents = LoadNewsgroupDataset("./Test Collections/Newsgroups/")
-    vectorizer = Vectorizer([str(i) for i in documents], True)
-    storage = InMemoryStorage()
-    boolean = BooleanModel(storage, vectorizer)
-    for d in documents:
-        boolean.AddDocument(d)
+    boolean = BooleanModel(documents)
+    for d in documents: boolean.AddDocument(d)
     return boolean

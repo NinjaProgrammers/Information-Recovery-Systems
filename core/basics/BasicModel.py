@@ -8,7 +8,7 @@ from core.basics.Document import Document
 
 class BasicModel:
 
-    def __init__(self, storage: BasicStorage, vectorizer: Vectorizer,
+    def __init__(self, documents, storage: BasicStorage, vectorizer: Vectorizer,
                  consultor: BasicConsultor, processor: BasicProcessor,
                  queryProcessor: BasicQueryProcessor):
         self.storage = storage
@@ -16,6 +16,7 @@ class BasicModel:
         self.consultor = consultor
         self.processor = processor
         self.queryProcessor = queryProcessor
+        for doc in documents: self.AddDocument(doc)
 
     def AddDocument(self, document: Document):
         representation = self.processor.ProcessDocument(document)

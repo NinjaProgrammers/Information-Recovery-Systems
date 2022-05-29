@@ -8,9 +8,6 @@ def InitializeProbabilisticModel():
     documents, _ = LoadCranDataset("./Test Collections/Cran/")
     # documents = LoadIMDBDataset("./Test Collections/imdb/")
     # documents = LoadNewsgroupDataset("./Test Collections/Newsgroups/")
-    vectorizer = Vectorizer([str(i) for i in documents], True)
-    storage = InMemoryStorage()
-    probabilistic = ProbabilisticModel(storage, vectorizer)
-    for d in documents:
-        probabilistic.AddDocument(d)
+    probabilistic = ProbabilisticModel(documents)
+    for d in documents: probabilistic.AddDocument(d)
     return probabilistic

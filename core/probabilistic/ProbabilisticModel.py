@@ -7,14 +7,17 @@ from core.basics.BasicModel import BasicModel
 from core.basics.BasicStorage import BasicStorage
 from core.probabilistic.ProbabilisticConsultor import ProbabilisticConsultor
 from core.basics.Vectorizer import Vectorizer
+from core.InMemoryStorage import InMemoryStorage
 
 
 class ProbabilisticModel(BasicModel):
-    def __init__(self, storage: BasicStorage, vectorizer: Vectorizer):
+    def __init__(self, documents, storage: BasicStorage=None, vectorizer: Vectorizer=None):
+        if storage is None: storage = InMemoryStorage()
+        if vectorizer is None: vectorizer = Vectorizer([str(i) for i in documents], True)
         consultor = ProbabilisticConsultor(vectorizer.df, vectorizer.N)
         processor = ProbabilisticProcessor(vectorizer)
         queryProcessor = ProbabilisticQueryProcessor(vectorizer)
-        super().__init__(storage, vectorizer, consultor, processor, queryProcessor)
+        super().__init__(documents, storage, vectorizer, consultor, processor, queryProcessor)
         self.eps = 1e-18
 
     def Consult(self, query, size=None, retroalimentation=None):

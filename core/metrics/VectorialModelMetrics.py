@@ -2,10 +2,8 @@ from core.InMemoryStorage import InMemoryStorage
 from core.vectorial.VectorialModel import VectorialModel
 from time import time
 
-def MeasureVectorialModel(documents, consults, vectorizer):
-    storage = InMemoryStorage()
-    model = VectorialModel(storage, vectorizer)
-    for i in documents: model.AddDocument(i)
+def MeasureVectorialModel(documents, consults):
+    model = VectorialModel(documents)
 
     precisionMeasures, recallMeasures, mapMeasures, timeMeasures = [], [], [], []
     for q in consults:

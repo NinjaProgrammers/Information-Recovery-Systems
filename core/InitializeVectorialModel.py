@@ -8,9 +8,7 @@ def InitializeVectorialModel():
     documents, _ = LoadCranDataset("./Test Collections/Cran/")
     # documents = LoadIMDBDataset("./Test Collections/imdb/")
     # documents = LoadNewsgroupDataset("./Test Collections/Newsgroups/")
-    vectorizer = Vectorizer([str(i) for i in documents])
-    storage = InMemoryStorage()
-    vectorial = VectorialModel(storage, vectorizer)
+    vectorial = VectorialModel(documents)
     for d in documents:
         vectorial.AddDocument(d)
     return vectorial

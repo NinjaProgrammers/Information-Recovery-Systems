@@ -5,14 +5,17 @@ from core.basics.Document import Document
 from core.basics.BasicModel import BasicModel
 from core.basics.BasicStorage import BasicStorage
 from core.basics.Vectorizer import Vectorizer
+from core.InMemoryStorage import InMemoryStorage
 
 
 class BooleanModel(BasicModel):
-    def __init__(self, storage: BasicStorage, vectorizer: Vectorizer):
+    def __init__(self, documents, storage: BasicStorage=None, vectorizer: Vectorizer=None):
+        if storage is None: storage = InMemoryStorage()
+        if vectorizer is None: vectorizer = Vectorizer([str(i) for i in documents], True)
         consultor = BooleanConsultor()
         processor = BooleanProcessor(vectorizer)
         queryProcessor = BooleanQueryProcessor(vectorizer)
-        super().__init__(storage, vectorizer, consultor, processor, queryProcessor)
+        super().__init__(documents, storage, vectorizer, consultor, processor, queryProcessor)
 
     def AddDocument(self, document: Document):
         super().AddDocument(document)

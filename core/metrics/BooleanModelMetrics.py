@@ -2,10 +2,8 @@ from core.boolean.BooleanModel import BooleanModel
 from core.InMemoryStorage import InMemoryStorage
 from time import time
 
-def MeasureBooleanModel(documents, consults, vectorizer):
-    booleanStorage = InMemoryStorage()
-    booleanModel = BooleanModel(booleanStorage, vectorizer)
-    for i in documents: booleanModel.AddDocument(i)
+def MeasureBooleanModel(documents, consults):
+    booleanModel = BooleanModel(documents)
 
     precisionMeasures, recallMeasures, timeMetrics = [], [], []
     for q in consults:

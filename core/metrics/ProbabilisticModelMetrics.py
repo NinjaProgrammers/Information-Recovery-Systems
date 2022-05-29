@@ -2,10 +2,8 @@ from core.InMemoryStorage import InMemoryStorage
 from core.probabilistic.ProbabilisticModel import ProbabilisticModel
 from time import time
 
-def MeasureProbabilisticModel(documents, consults, vectorizer):
-    storage = InMemoryStorage()
-    model = ProbabilisticModel(storage, vectorizer)
-    for i in documents: model.AddDocument(i)
+def MeasureProbabilisticModel(documents, consults):
+    model = ProbabilisticModel(documents)
 
     precisionMeasures, recallMeasures, mapMeasures, timeMeasures = [], [], [], []
     for q in consults:
