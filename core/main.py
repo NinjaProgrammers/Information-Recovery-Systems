@@ -7,7 +7,7 @@ from core.metrics.VectorialModelMetrics import MeasureVectorialModel
 from core.metrics.ProbabilisticModelMetrics import MeasureProbabilisticModel
 
 if __name__ == "__main__":
-    documents, consults = LoadCranDataset()
+    documents, consults = LoadCranDataset("../Test Collections/Cran/")
 
     vectorizer = Vectorizer([str(i) for i in documents], True)
     precission, recall, time = MeasureBooleanModel(documents, consults, vectorizer)

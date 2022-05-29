@@ -3,29 +3,28 @@ from core.fileProcessing.cran.Parser import ParseDocuments
 from core.fileProcessing.cran.ConsultParser import ParseConsults
 from core.fileProcessing.cran.RelevancyParser import ParseRelevancyList
 
-path = "./Test Collections/Cran/"
-documentsPath = path + "cran.all.1400"
-consultsPath = path + "cran.qry"
-relevancyPath = path + "cranqrel"
-
-def LoadCranDocuments():
+def LoadCranDocuments(documentsPath):
     return ReadDocument(documentsPath)
 
-def LoadCranConsults():
+def LoadCranConsults(consultsPath):
     return ReadDocument(consultsPath)
 
-def LoadCranRelevancyTuples():
+def LoadCranRelevancyTuples(relevancyPath):
     return ReadDocument(relevancyPath)
 
 
-def LoadCranDataset():
-    text = LoadCranDocuments()
+def LoadCranDataset(basePath):
+    documentsPath = basePath + "cran.all.1400"
+    consultsPath = basePath + "cran.qry"
+    relevancyPath = basePath + "cranqrel"
+
+    text = LoadCranDocuments(documentsPath)
     documents = ParseDocuments(text)
 
-    text = LoadCranConsults()
+    text = LoadCranConsults(consultsPath)
     consults = ParseConsults(text)
 
-    text = LoadCranRelevancyTuples()
+    text = LoadCranRelevancyTuples(relevancyPath)
     relevancy = ParseRelevancyList(text)
 
     for id, arr in enumerate(relevancy):

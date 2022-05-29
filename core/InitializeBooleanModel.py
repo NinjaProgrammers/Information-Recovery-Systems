@@ -5,7 +5,7 @@ from core.fileProcessing.Loader import LoadCranDataset
 
 
 def InitializeBooleanModel():
-    documents, _ = LoadCranDataset()
+    documents, _ = LoadCranDataset("./Test Collections/Cran/")
     vectorizer = Vectorizer([str(i) for i in documents], True)
     storage = InMemoryStorage()
     boolean = BooleanModel(storage, vectorizer)

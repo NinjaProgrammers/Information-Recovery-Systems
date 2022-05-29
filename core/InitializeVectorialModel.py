@@ -5,7 +5,7 @@ from core.vectorial.VectorialModel import VectorialModel
 
 
 def InitializeVectorialModel():
-    documents, _ = LoadCranDataset()
+    documents, _ = LoadCranDataset("./Test Collections/Cran/")
     vectorizer = Vectorizer([str(i) for i in documents])
     storage = InMemoryStorage()
     vectorial = VectorialModel(storage, vectorizer)
