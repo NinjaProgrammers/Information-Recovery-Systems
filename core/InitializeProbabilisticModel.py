@@ -5,9 +5,9 @@ from core.probabilistic.ProbabilisticModel import ProbabilisticModel
 
 
 def InitializeProbabilisticModel():
-    #documents, _ = LoadCranDataset("./Test Collections/Cran/")
+    documents, _ = LoadCranDataset("./Test Collections/Cran/")
     # documents = LoadIMDBDataset("./Test Collections/imdb/")
-    documents = LoadNewsgroupDataset("./Test Collections/Newsgroups/")
+    # documents = LoadNewsgroupDataset("./Test Collections/Newsgroups/")
     vectorizer = Vectorizer([str(i) for i in documents], True)
     storage = InMemoryStorage()
     probabilistic = ProbabilisticModel(storage, vectorizer)

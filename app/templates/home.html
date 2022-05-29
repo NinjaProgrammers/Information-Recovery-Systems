@@ -5,8 +5,14 @@
     <title>Home</title>
 </head>
 <body>
+    <style>
+        h1{color: darkblue;}
+        h2{color: black;}
+        label{color: darkblue; font-size: large;}
+        p{color: black;}
+    </style>
     <div style="margin: 50px">
-        <h1>Home Page</h1>
+        <h1>Select a model</h1>
         <form action="{% url 'search_results' %}" method="get">
             <div style="display: flex; justify-content: start;">
                 <div style="margin-right: 20px">
@@ -25,11 +31,11 @@
 
             <br><br>
 
-            <textarea style="width: 100%; height: 60px;" name="q" type="text" placeholder="Search..."></textarea>
+            <textarea style="width: 100%; height: 60px; font-size: large;" name="q" type="text" placeholder="Search..."></textarea>
             <br>
             <button style="float:right" type="submit">Search</button>
         </form>
-
+        <br> <br>
         {% block content %} {% endblock %}
     </div>
 

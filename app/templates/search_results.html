@@ -1,18 +1,58 @@
+<style>
+    .card {
+      /* Add shadows to create the "card" effect */
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      border-radius: 20px;
+      transition: 0.3s;
+      margin-bottom: 30px;
+      max-height: 500px;
+    }
+
+    /* On mouse-over, add a deeper shadow */
+    .card:hover {
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+    /* Add some padding inside the card container */
+    .container {
+      padding: 20px;
+    }
+
+    .card-header{
+        background-color: lightblue;
+        height: 30px;
+        padding: 20px;
+    }
+
+    .section {
+        background-color: #ddffff !important;
+    }
+
+    .content{
+        max-height: 10em;
+        line-height: 1em;
+        overflow-y: scroll;
+        background-color: white;
+    }
+</style>
+
 {% extends 'home.html' %}
 
 {% block content %}
-    <h1>Search Results</h1>
+    <h2>Search Results</h2>
 
-    <ul>
-        {% for doc in docs %}
-            <li>
-                <p><b>Document ID:</b> {{doc.id}}</p>
+    {% for doc in docs %}
+        <div class="card">
+            <div class="card-header">
+                <p><b>ID:</b> {{doc.id}}</p>
+            </div>
+            <div class="container section">
                 {% if doc.title != None %}<p><b>Title:</b> {{doc.title}}</p>{% endif %}
                 {% if doc.author != None %}<p><b>Author:</b> {{doc.author}}</p>{% endif %}
-                <p><b>Content:</b> {{doc.content}}</p>
+                <p class="content">{{doc.content}}</p>
                 {% if doc.bibliography != None %}<p><b>Bibliography:</b> {{doc.bibliography}}</p>{% endif %}
                 <br><br>
-            </li>
-        {% endfor %}
-    </ul>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}
