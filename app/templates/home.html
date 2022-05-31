@@ -7,53 +7,82 @@
 <body>
     <style>
         h1{color: darkblue;}
-        h2{color: black;}
-        label{color: darkblue; font-size: large;}
-        p{color: black;}
+        h2{color: darkblue;}
+        .card {
+          /* Add shadows to create the "card" effect */
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+          border-radius: 20px;
+          transition: 0.3s;
+          margin-bottom: 30px;
+          max-height: 500px;
+          width: 100%;
+        }
+
+        /* On mouse-over, add a deeper shadow */
+        .card:hover {
+          box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+        /* Add some padding inside the card container */
+        .container {
+          padding: 20px;
+        }
+
+        .row{
+            display: flex;
+            justify-content: space-between;
+        }
+        .section-column{
+            width: 70%;
+        }
+        .center{
+            display: flex;
+            justify-content: center;
+        }
+        .blue-btn{
+            background-color: darkblue;
+            color: white;
+        }
+        .gray-btn{
+            background-color: gray;
+            color: black;
+        }
+        .btn{
+            height: 40px;
+            width: 80px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
-    <div style="margin: 50px">
-        <h1>Select a model</h1>
-        <form action="{% url 'search_results' %}" method="get">
-            <div style="display: flex; justify-content: start;">
-                <div style="margin-right: 20px">
-                    {% if model == "Boolean" %}
-                        <input type="radio" name="model" value="Boolean" checked>
-                    {% else %}
-                        <input type="radio" name="model" value="Boolean">
-                    {% endif %}
-                    <label>Boolean</label>
+
+    <div class="container center">
+        <div class="section-column">
+            <h1>Select a model</h1>
+            <div>
+                <div class="card">
+                    <div class="container row">
+                        <h2>Boolean model</h2>
+                        <a class="btn blue-btn" href="{% url 'model' 'Boolean' %}">Select</a>
+                    </div>
                 </div>
-                <div style="margin-right: 20px">
-                    {% if model == "Vectorial" %}
-                        <input type="radio" name="model" value="Vectorial" checked>
-                    {% else %}
-                        <input type="radio" name="model" value="Vectorial">
-                    {% endif %}
-                    <label >Vectorial</label>
+                <div class="card">
+                    <div class="container row">
+                        <h2>Vectorial model</h2>
+                        <a class="btn blue-btn" href="{% url 'model' 'Vectorial' %}">Select</a>
+                    </div>
                 </div>
-                <div style="margin-right: 20px">
-                    {% if model == "Probabilistic" %}
-                        <input type="radio" name="model" value="Probabilistic" checked>
-                    {% else %}
-                        <input type="radio" name="model" value="Probabilistic">
-                    {% endif %}
-                    <label >Probabilistic</label>
+                <div class="card">
+                    <div class="container row">
+                        <h2>Probabilistic model</h2>
+                        <a class="btn blue-btn" href="{% url 'model' 'Probabilistic' %}">Select</a>
+                    </div>
                 </div>
             </div>
-
-            <br><br>
-
-            {% if q != None %}
-                <textarea style="width: 100%; height: 100px; font-size: large;"  name="q" type="text" placeholder="Search...">{{ q }}</textarea>
-            {% else %}
-                <textarea style="width: 100%; height: 60px; font-size: large;"  name="q" type="text" placeholder="Search..."></textarea>
-            {% endif %}
-            <br>
-            <button style="float:right" type="submit">Search</button>
-        </form>
-        <br> <br>
-        {% block content %} {% endblock %}
+        </div>
     </div>
+
 
 </body>
 </html>

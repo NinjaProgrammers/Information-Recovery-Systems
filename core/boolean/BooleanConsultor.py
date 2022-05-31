@@ -4,7 +4,7 @@ from core.basics.BasicConsultor import BasicConsultor
 
 class BooleanConsultor(BasicConsultor):
     def Consult(self, documents, query, relaxed=None):
-        if relaxed is None:
+        if not relaxed:
             return [doc for doc in documents if np.array_equal(doc.tokens, query)]
         else:
             def cmp(doc):

@@ -1,23 +1,4 @@
 <style>
-    .card {
-      /* Add shadows to create the "card" effect */
-      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-      border-radius: 20px;
-      transition: 0.3s;
-      margin-bottom: 30px;
-      max-height: 500px;
-    }
-
-    /* On mouse-over, add a deeper shadow */
-    .card:hover {
-      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    }
-
-    /* Add some padding inside the card container */
-    .container {
-      padding: 20px;
-    }
-
     .card-header{
         background-color: lightblue;
         height: 30px;
@@ -36,23 +17,57 @@
     }
 </style>
 
-{% extends 'home.html' %}
+{% extends 'model.html' %}
 
 {% block content %}
-    <h2>Search Results</h2>
+    {% if docs %}
+        {% if model == 'Vectorial' and retroalimentation %}
+            <form action="{% url 'model' model%}?size={{size}}&retroalimentation=on&q={{q}}" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <h3>Search Results</h3>
+                    <button class="btn blue-btn" type="submit">Send retroalimentation</button>
+                </div>
+                {% for doc in docs %}
+                    <div class="card">
+                        <div class="card-header row">
+                            <p><b>ID:</b> {{doc.id}}</p>
+                            <div>
+                                <select name="retro">
+                                    <option value="{{doc.id}} irrelevant" selected>Irrelevant</option>
+                                    <option value="{{doc.id}} relevant">Relevant</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="container section">
+                            {% if doc.title != None %}<p><b>Title:</b> {{doc.title}}</p>{% endif %}
+                            {% if doc.author != None %}<p><b>Author:</b> {{doc.author}}</p>{% endif %}
+                            <p class="content">{{doc.content}}</p>
+                            {% if doc.bibliography != None %}<p><b>Bibliography:</b> {{doc.bibliography}}</p>{% endif %}
+                            <br><br>
+                        </div>
+                    </div>
+                {% endfor %}
+            </form>
 
-    {% for doc in docs %}
-        <div class="card">
-            <div class="card-header">
-                <p><b>ID:</b> {{doc.id}}</p>
-            </div>
-            <div class="container section">
-                {% if doc.title != None %}<p><b>Title:</b> {{doc.title}}</p>{% endif %}
-                {% if doc.author != None %}<p><b>Author:</b> {{doc.author}}</p>{% endif %}
-                <p class="content">{{doc.content}}</p>
-                {% if doc.bibliography != None %}<p><b>Bibliography:</b> {{doc.bibliography}}</p>{% endif %}
-                <br><br>
-            </div>
-        </div>
-    {% endfor %}
+        {% else %}
+            <h3>Search Results</h3>
+            {% for doc in docs %}
+                <div class="card">
+                    <div class="card-header row">
+                        <p><b>ID:</b> {{doc.id}}</p>
+                    </div>
+                    <div class="container section">
+                        {% if doc.title != None %}<p><b>Title:</b> {{doc.title}}</p>{% endif %}
+                        {% if doc.author != None %}<p><b>Author:</b> {{doc.author}}</p>{% endif %}
+                        <p class="content">{{doc.content}}</p>
+                        {% if doc.bibliography != None %}<p><b>Bibliography:</b> {{doc.bibliography}}</p>{% endif %}
+                        <br><br>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% else %}
+        <h3>No results to show</h3>
+    {% endif %}
 {% endblock %}

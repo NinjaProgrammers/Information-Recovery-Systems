@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <style>
+        .dotted-border{
+            border-style: dotted;
+            border-width: 2px;
+            border-color: gray;
+            border-radius: 5px;
+        }
+
+        h1{color: darkblue;}
+        h2{color: darkblue;margin:5px;}
+        h3{color: black; font-size: large;}
+        label{color: darkblue; font-size: large;}
+        .card {
+          /* Add shadows to create the "card" effect */
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+          border-radius: 20px;
+          transition: 0.3s;
+          margin-bottom: 30px;
+          max-height: 500px;
+          width: 100%;
+        }
+
+        /* On mouse-over, add a deeper shadow */
+        .card:hover {
+          box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+        /* Add some padding inside the card container */
+        .container {
+          padding: 20px;
+        }
+
+        .row{
+            display: flex;
+            justify-content: space-between;
+        }
+        .section-column{
+            width: 70%;
+        }
+        .center{
+            display: flex;
+            justify-content: center;
+        }
+        .blue-btn{
+            background-color: darkblue;
+            color: white;
+        }
+        .btn{
+            height: 40px;
+            width: 80px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 5px;
+        }
+        .gray-btn{
+            background-color: lightgray;
+            color: black;
+        }
+        .right{
+            display: flex;
+            justify-content: right;
+        }
+    </style>
+    <div style="margin: 50px">
+        <form action="{% url 'model' model %}" method="get">
+            <div class="dotted-border container">
+                <div class="row">
+                    <h2>Customize model</h2>
+                    <div>
+                        <label>Size: </label>
+                        <input type="number" name="size" min="1" value="{{size}}">
+                    </div>
+                </div>
+                <br>
+                {% if model == "Boolean" %}
+                    {% if relaxed %}
+                        <input type="checkbox" name="relaxed" checked>
+                    {% else %}
+                        <input type="checkbox" name="relaxed">
+                    {% endif %}
+                    <label>Relaxed consult</label>
+                {% elif model == "Vectorial" %}
+                    {% if retroalimentation %}
+                        <input type="checkbox" name="retroalimentation" checked>
+                    {% else %}
+                        <input type="checkbox" name="retroalimentation">
+                    {% endif %}
+                    <label>Enable retroalimentation</label>
+                {% elif model == "Probabilistic" %}
+                    <label>Retroalimentation iterations: </label>
+                    <input type="number" name="iterations" min="1" value="{{iterations}}">
+                {% endif %}
+            </div>
+
+
+            <br><br>
+            {% if q != None %}
+                <textarea class="dotted-border" style="width: 100%; height: 100px; font-size: large;"  name="q" type="text" placeholder="Search...">{{ q }}</textarea>
+            {% else %}
+                <textarea class="dotted-border" style="width: 100%; height: 60px; font-size: large;"  name="q" type="text" placeholder="Search..."></textarea>
+            {% endif %}
+            <br>
+            <div class="right">
+                <button class="btn blue-btn" type="submit">Search</button>
+                <a class="btn gray-btn" href="{% url 'home' %}">Back</a>
+            </div>
+            <br> <br>
+        </form>
+
+        {% block content %} {% endblock %}
+    </div>
+</body>
+</html>
