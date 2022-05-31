@@ -33,6 +33,7 @@ def ModelView(request, model):
 
     data = {"relaxed": False, "iterations": 1, "retroalimentation": False}
     query = Consult(id=1, content=q)
+    begTime = time()
     if model == "Boolean":
         relaxedConsult = request.GET.get('relaxed')
         data['relaxed'] = relaxedConsult == 'on'
@@ -61,5 +62,6 @@ def ModelView(request, model):
     data["model"] = model
     data["q"] = q
     data["size"] = size
+    data["time"] = round(time() - begTime, ndigits=2)
 
     return render(request, template_name, data)

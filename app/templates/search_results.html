@@ -20,6 +20,7 @@
 {% extends 'model.html' %}
 
 {% block content %}
+    <p style="font-size: small;">Consult processed in {{time}} seconds.</p>
     {% if docs %}
         {% if model == 'Vectorial' and retroalimentation %}
             <form action="{% url 'model' model%}?size={{size}}&retroalimentation=on&q={{q}}" method="POST">
