@@ -22,6 +22,8 @@ class BooleanModel(BasicModel):
 
     def Consult(self, query, size=None, relaxed=None):
         processedQuery = self.queryProcessor.ProcessQuery(query)
+        if len(processedQuery) == 0:
+            return []
         documents = self.storage.GetAllDocuments()
         relevant = self.consultor.Consult(documents, processedQuery, relaxed)
         if size is None or size >= len(relevant): return relevant

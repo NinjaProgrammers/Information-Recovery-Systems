@@ -28,35 +28,38 @@ def ModelView(request, model):
     size = request.GET.get("size")
     size = 20 if size is None else int(size)
     q = request.GET.get("q")
+    data = {"relaxed": False, "iterations": 1, "retroalimentation": False}
     q = "" if q is None else q
     print("Query = ", q, " Model = ", model)
-
-    data = {"relaxed": False, "iterations": 1, "retroalimentation": False}
+    docs = []
     query = Consult(id=1, content=q)
     begTime = time()
     if model == "Boolean":
         relaxedConsult = request.GET.get('relaxed')
         data['relaxed'] = relaxedConsult == 'on'
-        docs = boolean.Consult(query, size=size, relaxed=(relaxedConsult == 'on'))
+        if not q == "":
+            docs = boolean.Consult(query, size=size, relaxed=(relaxedConsult == 'on'))
     elif model == "Vectorial":
         retroalimentation = request.GET.get('retroalimentation')
         data['retroalimentation'] = retroalimentation == 'on'
 
-        if retroalimentation == 'on' and request.method == "POST":
-            relevant, irrelevant = [], []
-            for item in request.POST.getlist('retro'):
-                x, y = item.split()
-                if y == 'irrelevant': irrelevant.append(int(x))
-                else: relevant.append(int(x))
-            print(relevant, irrelevant)
-            docs = vectorial.ReConsult(query, size=size, relevant=relevant, irrelevant=irrelevant)
-        else:
-            docs = vectorial.Consult(query, size=size)
+        if not q == "":
+            if retroalimentation == 'on' and request.method == "POST":
+                relevant, irrelevant = [], []
+                for item in request.POST.getlist('retro'):
+                    x, y = item.split()
+                    if y == 'irrelevant': irrelevant.append(int(x))
+                    else: relevant.append(int(x))
+                print(relevant, irrelevant)
+                docs = vectorial.ReConsult(query, size=size, relevant=relevant, irrelevant=irrelevant)
+            else:
+                docs = vectorial.Consult(query, size=size)
     else:
         iterations = request.GET.get('iterations')
         iterations = 1 if iterations is None else int(iterations)
         data['iterations'] = iterations
-        docs = probabilistic.Consult(query, size=size, retroalimentation=iterations)
+        if not q == "":
+            docs = probabilistic.Consult(query, size=size, retroalimentation=iterations)
 
     data["docs"] = docs
     data["model"] = model
