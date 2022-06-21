@@ -22,9 +22,9 @@ class ProbabilisticModel(BasicModel):
 
     def Consult(self, query, size=None, retroalimentation=None):
         assert(retroalimentation is None or (isinstance(retroalimentation, int) and isinstance(size, int)))
-
-        documents = self.storage.GetAllDocuments()
         processedQuery = self.queryProcessor.ProcessQuery(query)
+        if len(processedQuery) == 0: return []
+        documents = self.storage.GetAllDocuments()
         relevant = self.consultor.Consult(documents, processedQuery, size, retroalimentation)
 
         if size is None or size >= len(relevant): return relevant

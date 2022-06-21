@@ -1,9 +1,10 @@
 from core.basics.BasicConsultor import BasicConsultor
 from core.basics.Utils import angle
+from core.basics.Retroalimentation import Retroalimentation
 import numpy as np
 
 
-class VectorialConsultor(BasicConsultor):
+class VectorialConsultor(BasicConsultor, Retroalimentation):
 
     def Consult(self, documents, query):
         cmp = lambda x: angle(x.tokens, query)

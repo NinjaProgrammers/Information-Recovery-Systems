@@ -5,9 +5,10 @@ from core.basics.BasicStorage import BasicStorage
 from core.basics.Vectorizer import Vectorizer
 from core.vectorial.VectorialQueryProcessor import VectorialQueryProcessor
 from core.InMemoryStorage import InMemoryStorage
+from core.basics.Retroalimentation import Retroalimentation
 
 
-class VectorialModel(BasicModel):
+class VectorialModel(BasicModel, Retroalimentation):
     def __init__(self, documents, storage: BasicStorage=None, vectorizer: Vectorizer=None):
         if storage is None: storage = InMemoryStorage()
         if vectorizer is None: vectorizer = Vectorizer([str(i) for i in documents])
@@ -18,6 +19,7 @@ class VectorialModel(BasicModel):
 
     def Consult(self, query, size=None):
         processedQuery = self.queryProcessor.ProcessQuery(query)
+        if max(processedQuery) == 0: return []
         documents = self.storage.GetAllDocuments()
         relevant = self.consultor.Consult(documents, processedQuery)
         if size is None or size >= len(relevant): return relevant
