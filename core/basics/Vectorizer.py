@@ -18,7 +18,8 @@ class Vectorizer:
         self.transformer.fit(X)
 
         self.N = len(corpus)
-        self.vocabulary = len(self.counter.get_feature_names_out())
+        try: self.vocabulary = len(self.counter.get_feature_names_out())
+        except Exception: self.vocabulary = len(self.counter.get_feature_names())
 
         X = np.where(X.toarray() > 0, 1, 0)
         self.df = np.sum(X, axis=0)

@@ -1,5 +1,4 @@
 from core.boolean.BooleanModel import BooleanModel
-from core.InMemoryStorage import InMemoryStorage
 from time import time
 
 def MeasureBooleanModel(documents, consults):

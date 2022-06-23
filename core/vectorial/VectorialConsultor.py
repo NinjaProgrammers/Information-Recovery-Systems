@@ -16,8 +16,11 @@ class VectorialConsultor(BasicConsultor, Retroalimentation):
             return self.Consult(documents, query)
 
         alpha, beta, gamma = 1, 0.7, 0.3
-        rcentroid = np.sum([d for d in relevant], axis=0) / len(relevant)
-        icentroid = np.sum([d for d in irrelevant], axis=0) / len(irrelevant)
+        if len(relevant) == 0: rcentroid = np.zeros(len(query))
+        else: rcentroid = np.sum([d for d in relevant], axis=0) / len(relevant)
+
+        if len(irrelevant) == 0: icentroid = np.zeros(len(query))
+        else: icentroid = np.sum([d for d in irrelevant], axis=0) / len(irrelevant)
 
         newquery = alpha * query + beta * rcentroid - gamma * icentroid
         return self.Consult(documents, newquery)
