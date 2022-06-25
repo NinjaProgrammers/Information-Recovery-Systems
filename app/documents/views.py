@@ -24,6 +24,8 @@ class ModelWrapper:
     def GetModel(self, modelname, dataset):
         if self.modelname == modelname and self.dataset == dataset:
             return self.model
+        self.modelname = modelname
+        self.dataset = dataset
         if dataset == "cran": documents, _ = LoadCranDataset(cranUrl)
         elif dataset == "imdb": documents = LoadIMDBDataset(imdbUrl)
         else: documents = LoadNewsgroupDataset(newsgroupUrl)
