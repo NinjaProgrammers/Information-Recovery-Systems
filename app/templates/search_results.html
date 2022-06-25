@@ -27,7 +27,7 @@
     <p style="font-size: small;">Consult processed in {{time}} seconds.</p>
     {% if docs %}
         {% if model == 'Vectorial' and retroalimentation %}
-            <form action="{% url 'model' model%}?size={{size}}&retroalimentation=on&q={{q}}" method="POST">
+            <form action="{% url 'model' model dataset %}?size={{size}}&retroalimentation=on&q={{q}}" method="POST">
                 {% csrf_token %}
                 <div class="row">
                     <h3>Search Results</h3>

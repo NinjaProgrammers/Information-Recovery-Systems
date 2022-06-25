@@ -31,6 +31,7 @@
         .row{
             display: flex;
             justify-content: space-between;
+            vertical-align: center;
         }
         .section-column{
             width: 70%;
@@ -55,34 +56,54 @@
             justify-content: center;
             align-items: center;
         }
+        .dropdown{
+            height: 30px;
+            border-radius: 5px;
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+        .right{
+            display: flex;
+            justify-content: right;
+        }
     </style>
 
     <div class="container center">
         <div class="section-column">
-            <h1>Select a model</h1>
-            <div>
-                <div class="card">
-                    <div class="container row">
-                        <h2>Boolean model</h2>
-                        <a class="btn blue-btn" href="{% url 'model' 'Boolean' %}">Select</a>
+            <form action="{% url 'redirect' %}" method="POST">
+                <div class="container row">
+                    <h1>Select a model</h1>
+                    <select class="dropdown" name="dataset">
+                        <option value="cran" selected>Cran</option>
+                        <option value="imdb">IMDB</option>
+                        <option value="newsgroup">Newsgroup</option>
+                    </select>
+                </div>
+                <div>
+                    <div class="card">
+                        <div class="container row">
+                            <h2>Boolean model</h2>
+                            <input type="radio" name="model" value="Boolean" checked>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="container row">
+                            <h2>Vectorial model</h2>
+                            <input type="radio" name="model" value="Vectorial" >
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="container row">
+                            <h2>Probabilistic model</h2>
+                            <input type="radio" name="model" value="Probabilistic" >
+                        </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="container row">
-                        <h2>Vectorial model</h2>
-                        <a class="btn blue-btn" href="{% url 'model' 'Vectorial' %}">Select</a>
-                    </div>
+                <div class="right">
+                    <button class="btn blue-btn ">Next</button>
                 </div>
-                <div class="card">
-                    <div class="container row">
-                        <h2>Probabilistic model</h2>
-                        <a class="btn blue-btn" href="{% url 'model' 'Probabilistic' %}">Select</a>
-                    </div>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
-
-
 </body>
 </html>
