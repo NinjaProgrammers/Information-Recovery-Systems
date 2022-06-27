@@ -11,8 +11,7 @@ class BooleanConsultor(BasicConsultor):
                 a = len(np.intersect1d(doc.tokens, query))
                 b = len(np.setdiff1d(doc.tokens, query))
                 c = len(np.setdiff1d(query, doc.tokens))
-                if 2 * a + b + c == 0: return 0
-                return 2 * a / (2 * a + b + c)
+                return a / (a + b + c) - (1 - a / (a + c))
 
             documents.sort(key=cmp, reverse=True)
             return documents
