@@ -15,6 +15,7 @@ from time import time
 cranUrl = "./Test Collections/Cran/"
 imdbUrl = "./Test Collections/imdb/"
 newsgroupUrl = "./Test Collections/Newsgroups/"
+medUrl = "./Test Collections/Med/"
 
 class ModelWrapper:
     def __init__(self):
@@ -28,7 +29,8 @@ class ModelWrapper:
         self.dataset = dataset
         if dataset == "cran": documents, _ = LoadCranDataset(cranUrl)
         elif dataset == "imdb": documents = LoadIMDBDataset(imdbUrl)
-        else: documents = LoadNewsgroupDataset(newsgroupUrl)
+        elif dataset == "newsgroup": documents = LoadNewsgroupDataset(newsgroupUrl)
+        else: documents, _ = LoadMedDataset(medUrl)
 
         if modelname == "Boolean": self.model = BooleanModel(documents)
         elif modelname == "Vectorial": self.model = VectorialModel(documents)

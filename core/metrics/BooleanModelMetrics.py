@@ -8,7 +8,7 @@ def MeasureBooleanModel(documents, consults):
     for q in consults:
         relevant = [i[1] for i in q.relevant if i[2] == 1]
         begTime = time()
-        recovered = booleanModel.Consult(q, relaxed=0.5)
+        recovered = booleanModel.Consult(q)
         timeElapsed = time() - begTime
         timeMetrics.append(timeElapsed)
 

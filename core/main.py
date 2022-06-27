@@ -1,13 +1,13 @@
 from statistics import mean
 
-from core.fileProcessing.Loader import LoadCranDataset
+from core.fileProcessing.Loader import LoadCranDataset, LoadMedDataset
 from core.basics.Vectorizer import Vectorizer
 from core.metrics.BooleanModelMetrics import MeasureBooleanModel
 from core.metrics.VectorialModelMetrics import MeasureVectorialModel
 from core.metrics.ProbabilisticModelMetrics import MeasureProbabilisticModel
 
 if __name__ == "__main__":
-    documents, consults = LoadCranDataset("../Test Collections/Cran/")
+    documents, consults = LoadMedDataset("../Test Collections/Med/")
 
     precission, recall, time = MeasureBooleanModel(documents, consults)
     print(mean(precission), mean(recall), mean(time))
